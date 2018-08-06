@@ -95,7 +95,52 @@ public class Validate {
         return maxStr;
     }
     // CASE 3
-    public String validate(int caseN, String letters, char fixedChar, int index) // CASE_3
+    public String validate(int caseN, String letters, char fixedChar[], int[] index) // CASE_3
+    {
+        ArrayList<String> possibleValidPairs = new ArrayList<>();
+
+        if(fixedChar.length==1){
+            if(index.length==1)
+                possibleValidPairs=findValidStrings(letters,fixedChar[0],index[0]);
+            else
+                possibleValidPairs=findValidStringsOr(letters,fixedChar[0],index[0],index[1]);
+        }
+        else if(index.length==3){
+            possibleValidPairs.addAll(findValidStringsAnd(letters,fixedChar[0],fixedChar[1],index[0],index[2]+index[0]));
+            possibleValidPairs.addAll(findValidStringsAnd(letters,fixedChar[0],fixedChar[1],index[1],index[2]+index[1]));
+        }
+        else
+            possibleValidPairs.addAll(findValidStringsAnd(letters,fixedChar[0],fixedChar[1],index[0],index[1]+index[0]));
+        return findMaxString(possibleValidPairs);
+
+    }
+
+    public ArrayList<String> findValidStringsOr( String letters, char fixedChar, int index1,int index2) // CASE_3
+    {
+
+        ArrayList<String> possibleValidPairs = new ArrayList<>();
+
+        possibleValidPairs.addAll(findValidStrings( letters,  fixedChar,  index1));
+        possibleValidPairs.addAll(findValidStrings( letters,  fixedChar,  index2));
+        return possibleValidPairs;
+
+    }
+    public ArrayList<String> findValidStringsAnd( String letters, char fixedChar1,char fixedChar2, int index1,int index2) // CASE_3
+    {
+
+        ArrayList<String> possibleValidPairs1 = findValidStrings( letters,  fixedChar1,  index1);
+        ArrayList<String> possibleValidPairs2 = findValidStrings( letters,  fixedChar2,  index2);
+        ArrayList<String> possibleValidPairs = new ArrayList<>();
+        for (String t : possibleValidPairs1) {
+            if(possibleValidPairs2.contains(t)) {
+                possibleValidPairs.add(t);
+            }
+        }
+        return possibleValidPairs;
+
+    }
+
+    public ArrayList<String> findValidStrings(String letters, char fixedChar, int index) // CASE_3
     {
         String maxStr;
         ArrayList<String> possiblePairs;
@@ -114,9 +159,7 @@ public class Validate {
             System.out.print(str+" ");
         System.out.println();
 
+        return possibleValidPairs;
 
-        maxStr = findMaxString(possibleValidPairs);
-        return maxStr;
     }
-
 }
