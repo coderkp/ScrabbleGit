@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 public class SowpodsUtil {
 
-    public HashMap<String,ArrayList<String>> anagramMap = new HashMap<>();
-    public void intSowpodsUtil(){
+    public static HashMap<String,ArrayList<String>> anagramMap = new HashMap<>();
+    public static void intSowpodsUtil(){
 
         File file = new File("./src/sowpods.txt");
         System.out.println(file);
@@ -35,7 +35,7 @@ public class SowpodsUtil {
 
     }
 
-    public ArrayList<String> findAnagramEquivalents(String s){
+    public static ArrayList<String> findAnagramEquivalents(String s){
         char[] letters = s.toCharArray();
         Arrays.sort(letters);
         String key = new String(letters);
