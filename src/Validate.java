@@ -86,7 +86,6 @@ public class Validate {
             for(char c = 'A'; c <= 'Z'; c++)
             {
                 letters = letters.concat(Character.toString(c));
-                System.out.println("Case 2 " + c);
                 possiblePairs = listAllWords(letters);
                 if(possiblePairs != null)
                     maxStr = findMaxString(possiblePairs);
