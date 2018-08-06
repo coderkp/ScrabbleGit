@@ -4,7 +4,7 @@ public class Main {
 
         SowpodsUtil s = new SowpodsUtil();
         s.intSowpodsUtil();
-        //System.out.println(s.anagramMap.get("ACT"));
+        System.out.println(ScrabbleUtil.getWordScore("ACT"));
 
         for(String st : s.findAnagramEquivalents("TAC"))
             System.out.println(st);
